@@ -3,7 +3,7 @@ require 'rack-flash'
 
 class SongsController < ApplicationController
 
-  post '/songs/:slug' do
+  patch '/songs/:slug' do
     @song = Song.find_by_slug(params[:slug])
     slug = @song.slug
 
