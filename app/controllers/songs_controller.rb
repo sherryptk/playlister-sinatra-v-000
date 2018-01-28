@@ -7,16 +7,15 @@ class SongsController < ApplicationController
     @song = Song.find_by_slug(params[:slug])
     slug = @song.slug
 
-    new_artist = Artist.find_or_create_by(name: params[:artist_name])
-    @song.artist = new_artist
+    @song.artist = Artist.find_or_create_by(name: params[:artist_name])
 
     updated_genres = []
     params["genres"].each do |genre_id|
       genre = Genre.find(genre_id.to_i)
        updated_genres << genre
     end
-
     @song.genres = updated_genres
+
     flash[:message] = "Successfully updated song."
     redirect to "/songs/#{slug}"
   end
