@@ -4,7 +4,6 @@ require 'rack-flash'
 class SongsController < ApplicationController
 
   post '/songs/:slug' do
-    binding.pry
     @song = Song.find_by_slug(params[:slug])
     slug = @song.slug
 
@@ -12,7 +11,7 @@ class SongsController < ApplicationController
     @song.artist = new_artist
 
     updated_genres = []
-
+binding.pry
     params["genres"].each do |genre_id|
       genre = Genre.find(genre_id.to_i)
        updated_genres << genre
